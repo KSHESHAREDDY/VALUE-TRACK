@@ -1,0 +1,42 @@
+.launch-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+}
+
+.form-card {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 1rem;
+}
+
+.toggle-tabs {
+  display: flex;
+  justify-content: space-between;
+  background: #e9ecef;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  color: #495057;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tab-button:hover {
+  background-color: #dee2e6;
+}
+
+.active-tab {
+  background-color: #0d6efd;
+  color: white;
+}

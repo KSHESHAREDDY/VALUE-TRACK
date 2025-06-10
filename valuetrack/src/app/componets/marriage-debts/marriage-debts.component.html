@@ -1,0 +1,38 @@
+<div class="container mt-3">
+  <!-- Selector -->
+  <div class="d-flex justify-content-start">
+    <button class="btn btn-outline-primary" (click)="toggleForm()">
+      Marriage Debts
+    </button>
+  </div>
+
+  <!-- Form -->
+  <div *ngIf="showForm" class="card mt-3 p-3 shadow-sm">
+    <form [formGroup]="debtForm" (ngSubmit)="addDebt()">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">Name</label>
+          <input formControlName="name" class="form-control" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Village Name</label>
+          <input formControlName="village" class="form-control" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Nickname</label>
+          <input formControlName="nickname" class="form-control" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Amount Given</label>
+          <input formControlName="amount" type="number" class="form-control" />
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <button class="btn btn-success" type="submit" [disabled]="debtForm.invalid">
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

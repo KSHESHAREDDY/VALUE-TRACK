@@ -6,7 +6,7 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { authReducer } from './features/auth/store/auth.reducer';
+import { authReducer } from './store/auth/store/auth.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [

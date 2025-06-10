@@ -1,0 +1,99 @@
+<div class="launch-wrapper">
+  <div class="form-card shadow-lg p-4 rounded-4 bg-white">
+    <div class="text-center mb-4">
+      <img src="vs.png" alt="Logo" width="60" class="mb-2" />
+      <h2 class="fw-bold text-primary m-0">Value Stack</h2>
+      <small class="text-muted">{{ isLogin ? 'Welcome back!' : 'Join us today' }}</small>
+    </div>
+
+    <!-- Toggle switch -->
+    <div class="toggle-tabs d-flex mb-4">
+      <button
+        class="tab-button"
+        [class.active-tab]="isLogin"
+        (click)="isLogin = true"
+      >
+        Login
+      </button>
+      <button
+        class="tab-button"
+        [class.active-tab]="!isLogin"
+        (click)="isLogin = false"
+      >
+        Sign Up
+      </button>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" autocomplete="off">
+      <!-- Login form -->
+      <ng-container *ngIf="isLogin">
+        <div class="form-group mb-3">
+          <label>Username or Email</label>
+          <input
+            type="text"
+            name="usernameOrEmail"
+            class="form-control"
+            [(ngModel)]="loginData.usernameOrEmail"
+            required
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            [(ngModel)]="loginData.password"
+            required
+          />
+        </div>
+      </ng-container>
+
+      <!-- Register form -->
+      <ng-container *ngIf="!isLogin">
+        <div class="form-group mb-3">
+          <label>Username</label>
+          <input
+            type="text"
+            name="username"
+            class="form-control"
+            [(ngModel)]="registerData.username"
+            required
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            [(ngModel)]="registerData.email"
+            required
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            [(ngModel)]="registerData.password"
+            required
+          />
+        </div>
+      </ng-container>
+
+      <div *ngIf="errorMessage" class="alert alert-danger py-2 mb-3">
+        {{ errorMessage }}
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary w-100"
+        [disabled]="form.invalid"
+      >
+        {{ isLogin ? 'Login' : 'Register' }}
+      </button>
+    </form>
+  </div>
+</div>

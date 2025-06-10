@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { logout } from '../../auth/store/auth.actions';
+import { logout } from '../../../store/auth/store/auth.actions';
 import { CommonModule } from '@angular/common';
 
 @Component({
