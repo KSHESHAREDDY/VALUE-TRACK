@@ -30,13 +30,17 @@ export class LaunchComponent {
 
   errorMessage = '';
 
-  toggleMode(): void {
+  toggleMode(isLogin: boolean, form: NgForm): void {
     this.isLogin = !this.isLogin;
     this.errorMessage = '';
+    form.reset();
   }
 
   onSubmit(form: NgForm): void {
-    if (form.valid) {
+    if (form.invalid)
+      return;
+
+    if (this.isLogin) {
       this.authService.login(this.loginData).subscribe({
         next: res => {
           this.store.dispatch(loginSuccess({ user: res.data }));
@@ -50,9 +54,20 @@ export class LaunchComponent {
           }
         }
       });
+    } else {
+      this.authService.register(this.registerData).subscribe({
+        next: (response) => {
+          // Optional: Auto-login or redirect to login
+          this.isLogin = true;
+          this.errorMessage = '';
+          this.router.navigate(['/verify-email'], { queryParams: { email: this.registerData.email } });
+        },
+        error: (err) => {
+          this.errorMessage = err.error?.message;
+        }
+      });
     }
   }
-
   constructor(private authService: AuthService, private router: Router, private store: Store) {
 
   }

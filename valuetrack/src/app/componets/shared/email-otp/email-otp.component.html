@@ -1,0 +1,26 @@
+<div class="otp-wrapper">
+    <div class="otp-card shadow rounded-4 p-4 bg-white">
+        <h4 class="text-primary text-center fw-bold mb-2">Verify Your Email</h4>
+        <p class="text-muted text-center mb-4">
+            Enter the 6-digit code sent to <strong>{{ email }}</strong>
+        </p>
+
+        <div class="otp-input-group d-flex justify-content-center gap-2 mb-3">
+            <input *ngFor="let digit of otp; let i = index" type="text" maxlength="1"
+                class="otp-input form-control text-center" [value]="otp[i]" name="otp{{i}}" #otpInput
+                (keyup)="onKeyUp($event, i)" autocomplete="one-time-code" />
+        </div>
+
+        <div *ngIf="errorMessage" class="alert alert-danger py-2">{{ errorMessage }}</div>
+        <div *ngIf="successMessage" class="alert alert-success py-2">{{ successMessage }}</div>
+
+        <button class="btn btn-primary w-100 mt-2" (click)="verifyOtp()" [disabled]="isSubmitting">
+            Verify
+        </button>
+
+        <div class="text-center mt-3">
+            <small class="text-muted">Didn't receive the code?</small>
+            <button class="btn btn-link p-0 ms-1" (click)="resendOtp()">Resend OTP</button>
+        </div>
+    </div>
+</div>

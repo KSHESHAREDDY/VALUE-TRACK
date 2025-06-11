@@ -3,23 +3,14 @@
     <div class="text-center mb-4">
       <img src="vs.png" alt="Logo" width="60" class="mb-2" />
       <h2 class="fw-bold text-primary m-0">Value Stack</h2>
-      <small class="text-muted">{{ isLogin ? 'Welcome back!' : 'Join us today' }}</small>
     </div>
 
     <!-- Toggle switch -->
     <div class="toggle-tabs d-flex mb-4">
-      <button
-        class="tab-button"
-        [class.active-tab]="isLogin"
-        (click)="isLogin = true"
-      >
+      <button class="tab-button" [class.active-tab]="isLogin" (click)='toggleMode(true, form)'>
         Login
       </button>
-      <button
-        class="tab-button"
-        [class.active-tab]="!isLogin"
-        (click)="isLogin = false"
-      >
+      <button class="tab-button" [class.active-tab]="!isLogin" (click)='toggleMode(false, form)'>
         Sign Up
       </button>
     </div>
@@ -29,23 +20,12 @@
       <ng-container *ngIf="isLogin">
         <div class="form-group mb-3">
           <label>Username or Email</label>
-          <input
-            type="text"
-            name="usernameOrEmail"
-            class="form-control"
-            [(ngModel)]="loginData.usernameOrEmail"
-            required
-          />
+          <input type="text" name="usernameOrEmail" class="form-control" [(ngModel)]="loginData.usernameOrEmail"
+            required />
         </div>
         <div class="form-group mb-3">
           <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            class="form-control"
-            [(ngModel)]="loginData.password"
-            required
-          />
+          <input type="password" name="password" class="form-control" [(ngModel)]="loginData.password" required />
         </div>
       </ng-container>
 
@@ -53,33 +33,15 @@
       <ng-container *ngIf="!isLogin">
         <div class="form-group mb-3">
           <label>Username</label>
-          <input
-            type="text"
-            name="username"
-            class="form-control"
-            [(ngModel)]="registerData.username"
-            required
-          />
+          <input type="text" name="username" class="form-control" [(ngModel)]="registerData.username" required />
         </div>
         <div class="form-group mb-3">
           <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            class="form-control"
-            [(ngModel)]="registerData.email"
-            required
-          />
+          <input type="email" name="email" class="form-control" [(ngModel)]="registerData.email" required />
         </div>
         <div class="form-group mb-3">
           <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            class="form-control"
-            [(ngModel)]="registerData.password"
-            required
-          />
+          <input type="password" name="password" class="form-control" [(ngModel)]="registerData.password" required />
         </div>
       </ng-container>
 
@@ -87,11 +49,7 @@
         {{ errorMessage }}
       </div>
 
-      <button
-        type="submit"
-        class="btn btn-primary w-100"
-        [disabled]="form.invalid"
-      >
+      <button type="submit" class="btn btn-primary w-100" [disabled]="form.invalid">
         {{ isLogin ? 'Login' : 'Register' }}
       </button>
     </form>

@@ -17,6 +17,12 @@ export const routes: Routes = [
         canActivate: [authGuard]
     },
     {
+        path: 'verify-email',
+        loadComponent: () =>
+            import('./componets/shared/email-otp/email-otp.component').then(m => m.EmailOtpComponent),
+        providers: [provideHttpClient(), AuthService]
+    },
+    {
         path: '**',
         redirectTo: ''
     }
