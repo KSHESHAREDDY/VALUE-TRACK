@@ -40,3 +40,33 @@
   background-color: #0d6efd;
   color: white;
 }
+
+.otp-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ngx-otp-input {
+  display: inline-block;
+
+  .ngx-otp-input-form {
+    .ngx-otp-input-box {
+      width: 55px !important;
+      height: 50px !important;
+      font-size: 22px;
+      text-align: center;
+      margin: 0 6px;
+      border-radius: 6px;
+      border: 1px solid #ced4da;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.3s ease;
+      line-height: 50px; // Align text vertically
+    }
+
+    .ngx-otp-input-box:focus {
+      border-color: #0d6efd;
+      outline: none;
+    }
+  }
+}

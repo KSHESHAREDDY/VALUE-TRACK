@@ -19,8 +19,8 @@ export class AuthService {
     return this.httpClient.post(baseUrl + "register", registerData).pipe(catchError(err => throwError(() => err)));
   }
 
-  verifyOtp(email: string, otp: string): Observable<any> {
-    return this.httpClient.post('verify-otp', { email, otp });
+  verifyOtp(email: string, otpCode: string): Observable<any> {
+    return this.httpClient.post(baseUrl + 'verify-otp', { email, otpCode });
   }
 
   resendOtp(email: string): Observable<any> {

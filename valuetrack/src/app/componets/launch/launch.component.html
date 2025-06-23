@@ -3,20 +3,33 @@
     <div class="text-center mb-4">
       <img src="vs.png" alt="Logo" width="60" class="mb-2" />
       <h2 class="fw-bold text-primary m-0">Value Stack</h2>
+      <small class="text-muted" *ngIf="!showOtpInput">{{ isLogin ? 'Welcome back!' : 'Join us today' }}</small>
     </div>
 
-    <!-- Toggle switch -->
-    <div class="toggle-tabs d-flex mb-4">
-      <button class="tab-button" [class.active-tab]="isLogin" (click)='toggleMode(true, form)'>
-        Login
-      </button>
-      <button class="tab-button" [class.active-tab]="!isLogin" (click)='toggleMode(false, form)'>
-        Sign Up
-      </button>
+    <!-- OTP Input -->
+    <div *ngIf="showOtpInput">
+      <p class="text-muted text-center mb-3">
+        Enter the 6-digit code sent to <strong>{{ registeredEmail }}</strong>
+      </p>
+      <div class="otp-container">
+        <ngx-otp-input [options]="otpConfig" (otpComplete)="onOtpComplete($event)" (otpChange)="onOtpChange($event)">
+        </ngx-otp-input>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+      <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+
+      <button class="btn btn-primary w-100 mt-3" (click)="verifyOtp()">Verify OTP</button>
     </div>
 
-    <form #form="ngForm" (ngSubmit)="onSubmit(form)" autocomplete="off">
-      <!-- Login form -->
+    <!-- Login/Register Form -->
+    <form *ngIf="!showOtpInput" #form="ngForm" (ngSubmit)="onSubmit(form)" autocomplete="off">
+      <div class="toggle-tabs d-flex mb-4">
+        <button class="tab-button" [class.active-tab]="isLogin" (click)="toggleMode(true, form)">Login</button>
+        <button class="tab-button" [class.active-tab]="!isLogin" (click)="toggleMode(false, form)">Sign Up</button>
+      </div>
+
+      <!-- Login Form -->
       <ng-container *ngIf="isLogin">
         <div class="form-group mb-3">
           <label>Username or Email</label>
@@ -29,7 +42,7 @@
         </div>
       </ng-container>
 
-      <!-- Register form -->
+      <!-- Sign Up Form -->
       <ng-container *ngIf="!isLogin">
         <div class="form-group mb-3">
           <label>Username</label>
@@ -45,9 +58,7 @@
         </div>
       </ng-container>
 
-      <div *ngIf="errorMessage" class="alert alert-danger py-2 mb-3">
-        {{ errorMessage }}
-      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger py-2 mb-3">{{ errorMessage }}</div>
 
       <button type="submit" class="btn btn-primary w-100" [disabled]="form.invalid">
         {{ isLogin ? 'Login' : 'Register' }}
