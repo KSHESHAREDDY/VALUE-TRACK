@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 
-export const baseUrl = 'http://localhost:8000/api/auth/';
+export const AUTH_SERVICE = 'http://localhost:9999/api/auth/';
 
 @Injectable()
 export class AuthService {
@@ -12,15 +12,15 @@ export class AuthService {
   }
 
   login(creds: { usernameOrEmail: string, password: string }): Observable<any> {
-    return this.httpClient.post(baseUrl + "login", creds).pipe(catchError(err => throwError(() => err)));
+    return this.httpClient.post(AUTH_SERVICE + "login", creds).pipe(catchError(err => throwError(() => err)));
   }
 
   register(registerData: { username: string, email: string, password: string }): Observable<any> {
-    return this.httpClient.post(baseUrl + "register", registerData).pipe(catchError(err => throwError(() => err)));
+    return this.httpClient.post(AUTH_SERVICE + "register", registerData).pipe(catchError(err => throwError(() => err)));
   }
 
   verifyOtp(email: string, otpCode: string): Observable<any> {
-    return this.httpClient.post(baseUrl + 'verify-otp', { email, otpCode });
+    return this.httpClient.post(AUTH_SERVICE + 'verify-otp', { email, otpCode });
   }
 
   resendOtp(email: string): Observable<any> {
