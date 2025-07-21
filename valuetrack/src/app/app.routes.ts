@@ -11,9 +11,9 @@ export const routes: Routes = [
         providers: [provideHttpClient(), AuthService]
     },
     {
-        path: 'dashboard',
+        path: 'marriage',
         loadComponent: () =>
-            import('./componets/dashboard/dashboard.component').then(m => m.DashboardComponent),
+            import('./componets/marriage/marriage.component').then(m => m.MarriageComponent),
         canActivate: [authGuard]
     },
     {
