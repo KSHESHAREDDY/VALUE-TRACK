@@ -7,6 +7,9 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { authReducer } from './store/auth/store/auth.reducer';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,5 +19,10 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideStore({ auth: authReducer }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideAnimationsAsync(),
+    providePrimeNG({
+            theme: {
+                preset: Aura
+            }})
   ]
 };

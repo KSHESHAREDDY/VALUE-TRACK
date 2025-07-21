@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 
-export const AUTH_SERVICE = 'http://localhost:9999/api/auth/';
+export const AUTH_SERVICE = 'http://localhost:9999/auth/';
 
 @Injectable()
 export class AuthService {
