@@ -63,7 +63,7 @@ export class LaunchComponent {
       this.authService.login(this.loginData).subscribe({
         next: res => {
           this.store.dispatch(loginSuccess({ user: res.data }));
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/marriage']);
         },
         error: err => {
           this.errorMessage = err.error?.message || "Login failed. Please try again.";
